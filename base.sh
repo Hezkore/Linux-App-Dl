@@ -3,4 +3,4 @@
 
 notify-send "Installing ${1}"
 
-wget -O - https://github.com/Hezkore/Linux-App-Dl/tree/master/Debian/${1}.sh | bash -
+wget -O - https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/Debian/${1}.sh | sh -
