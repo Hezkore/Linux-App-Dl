@@ -1,6 +1,6 @@
 #!/bin/bash
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: t; tab-width: 4 -*-
 
-sudo -S apt install htop -y
+sudo apt install htop -y
 
-export APP=sh -c 'htop;$SHELL'
+end_with "spotify"

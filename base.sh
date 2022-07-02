@@ -23,14 +23,20 @@ function check_pass {
 	return 1
 }
 
+function end_with {
+	sudo mkdir -p "$HOME/.cache"
+	sudo echo -e $1 > "$HOME/.cache/y.run"
+}
+
 ask_pass
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
 		wget -O - https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh |
-		sudo sh - |
+		source sh - |
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
-		$($APP)
+		$(cat "$HOME/.cache/y.run")
+		sudo rm -r "$HOME/.cache/y.run"
 		exit
 	else
 		echo "Wrong Password!"
