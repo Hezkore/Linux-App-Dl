@@ -52,10 +52,8 @@ while ! check_pass; do
 		echo Launching $APP
 		rm -r "$HOME/.cache/y.run"
 		bash -c "$APP &"
-		exit
 	else
 		echo "Wrong Password!"
 		ask_pass
     fi
 done
-exit
