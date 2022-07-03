@@ -1,6 +1,8 @@
 #!/bin/bash
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: t; tab-width: 4 -*-
 
+mkdir -p "$HOME/.cache"
+
 DISTRO='Debian'
 
 function ask_pass {
@@ -24,20 +26,19 @@ function check_pass {
 }
 
 function end_with {
-	sudo mkdir -p "$HOME/.cache"
-	sudo echo -e $1 > "$HOME/.cache/y.run"
+	echo -e $1 > "$HOME/.cache/y.run"
 }
 
 ask_pass
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
-		wget -O - https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh |
-		source - |
-		#source ./Debian/htop.sh |
+		wget -O "$HOME/.cache/y.ins" https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh
+		source "$HOME/.cache/y.ins" |
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
+		rm -r "$HOME/.cache/y.ins"
 		$(cat "$HOME/.cache/y.run")
-		sudo rm -r "$HOME/.cache/y.run"
+		rm -r "$HOME/.cache/y.run"
 		exit
 	else
 		echo "Wrong Password!"
