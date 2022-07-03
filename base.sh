@@ -30,7 +30,7 @@ function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 }
 
-echo Please enter your password
+echo Please enter your password to install $1
 ask_pass
 echo Installing $1
 while ! check_pass; do
