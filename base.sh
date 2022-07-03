@@ -52,7 +52,7 @@ while ! check_pass; do
 		clear
 		echo Launching $APP
 		sleep 1
-		$APP &
+		bash -c "$APP &"
 		sleep 5
 		exit
 	else
