@@ -47,7 +47,7 @@ while ! check_pass; do
 		APP=$(cat "$HOME/.cache/y.run")
 		echo Launching $APP
 		rm -r "$HOME/.cache/y.run"
-		$APP
+		bash -sc "$APP &"
 		exit
 	else
 		echo "Wrong Password!"
