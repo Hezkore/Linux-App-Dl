@@ -54,10 +54,8 @@ while ! check_pass; do
 		clear
 		echo "Starting $APP..."
 		sleep 1
-		bash -sc "${APP} &"
-		sleep 1
-		disown
-		sleep 1
+		nohup "${APP} &"
+		sleep 2
 		exit
 	else
 		echo "Wrong Password!"
