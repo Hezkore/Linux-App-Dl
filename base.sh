@@ -46,11 +46,11 @@ while ! check_pass; do
 		source "./${DISTRO}/${1}.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		
-		clear
 		rm -r "$HOME/.cache/y.ins"
 		APP=$(cat "$HOME/.cache/y.run")
-		echo Launching $APP
 		rm -r "$HOME/.cache/y.run"
+		clear
+		echo Launching $APP
 		sleep 1
 		bash -c "$APP &"
 		sleep 5
