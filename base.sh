@@ -38,8 +38,9 @@ while ! check_pass; do
 		#source "./Debian/htop.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		rm -r "$HOME/.cache/y.ins"
-		eval $(cat "$HOME/.cache/y.run")
+		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
+		$APP
 		exit
 	else
 		echo "Wrong Password!"
