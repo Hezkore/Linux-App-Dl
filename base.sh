@@ -54,7 +54,7 @@ while ! check_pass; do
 		clear
 		echo "Starting $APP..."
 		sleep 1
-		sh -sc "${APP} &"
+		sh -sc "${APP} #"
 		sleep 5
 		exit
 	else
