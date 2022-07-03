@@ -1,8 +1,10 @@
 #!/bin/bash
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: t; tab-width: 4 -*-
 
-clear
 mkdir -p "$HOME/.cache"
+clear
+
+echo "=== Download & Install $1 ==="
 
 DISTRO='Debian'
 
