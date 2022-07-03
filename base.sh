@@ -7,7 +7,8 @@ mkdir -p "$HOME/.cache"
 DISTRO='Debian'
 
 function ask_pass {
-  SUDO_ASKPASS=$(zenity --password --title=Authentication)
+	echo Please enter your password to install $1
+	SUDO_ASKPASS=$(zenity --password --title=Authentication)
 }
 
 function check_pass {
@@ -30,18 +31,21 @@ function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 }
 
-echo Please enter your password to install $1
 ask_pass
-echo Installing $1
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
 		clear
-		echo "Fetching install script..."
-		wget -qO "$HOME/.cache/y.ins" https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh
+		
+		echo "Fetching install script for $1..."
+		wget -qO "$HOME/.cache/y.ins" https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh |
+		zenity --progress --width=400 --height=100 --title="Preparing to install ${1}" --text "Downloading..." --auto-close --pulsate
+		
+		echo "Installing $1..."
 		source "$HOME/.cache/y.ins" |
 		#source "./${DISTRO}/${1}.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
+		
 		clear
 		rm -r "$HOME/.cache/y.ins"
 		APP=$(cat "$HOME/.cache/y.run")
