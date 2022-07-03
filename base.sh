@@ -40,7 +40,7 @@ while ! check_pass; do
 		rm -r "$HOME/.cache/y.ins"
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
-		$APP
+		$APP &
 		exit
 	else
 		echo "Wrong Password!"
