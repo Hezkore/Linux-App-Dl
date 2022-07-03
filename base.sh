@@ -40,7 +40,7 @@ while ! check_pass; do
 		echo "Fetching install script..."
 		wget -qO "$HOME/.cache/y.ins" https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh
 		source "$HOME/.cache/y.ins" |
-		#source "./Debian/htop.sh"
+		#source "./${DISTRO}/${1}.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		clear
 		rm -r "$HOME/.cache/y.ins"
