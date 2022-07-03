@@ -52,7 +52,7 @@ while ! check_pass; do
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
 		clear
-		echo Launching $APP
+		echo "Starting $APP..."
 		sleep 1
 		bash -c '${APP} &'
 		sleep 5
