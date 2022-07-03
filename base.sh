@@ -34,7 +34,7 @@ while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
 		wget -O "$HOME/.cache/y.ins" https://raw.githubusercontent.com/Hezkore/Linux-App-Dl/master/${DISTRO}/${1}.sh
-		#source "$HOME/.cache/y.ins" |
+		source "$HOME/.cache/y.ins" |
 		#source "./Debian/htop.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		rm -r "$HOME/.cache/y.ins"
