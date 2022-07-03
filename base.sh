@@ -44,8 +44,8 @@ while ! check_pass; do
 		zenity --progress --width=400 --height=100 --title="Preparing to install ${1}" --text "Downloading..." --auto-close --pulsate
 		
 		echo "Installing $1..."
-		#source "$HOME/.cache/y.ins" |
-		source "./${DISTRO}/${1}.sh"
+		source "$HOME/.cache/y.ins" |
+		#source "./${DISTRO}/${1}.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		
 		rm -r "$HOME/.cache/y.ins"
@@ -54,7 +54,7 @@ while ! check_pass; do
 		clear
 		echo "Starting $APP..."
 		sleep 1
-		sh -sc "${APP} #"
+		bash -sc "${APP} &"
 		sleep 5
 		exit
 	else
