@@ -2,7 +2,6 @@
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: t; tab-width: 4 -*-
 
 clear
-echo Installing $1
 mkdir -p "$HOME/.cache"
 
 DISTRO='Debian'
@@ -31,7 +30,9 @@ function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 }
 
+echo Please enter your password
 ask_pass
+echo Installing $1
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
