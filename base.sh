@@ -7,7 +7,6 @@ mkdir -p "$HOME/.cache"
 DISTRO='Debian'
 
 function ask_pass {
-	echo Please enter your password to install $1
 	SUDO_ASKPASS=$(zenity --password --title=Authentication)
 }
 
@@ -31,6 +30,7 @@ function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 }
 
+echo Please enter your password to install $1
 ask_pass
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
