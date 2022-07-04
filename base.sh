@@ -46,6 +46,7 @@ function check_pass {
 
 function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
+	CLOSE_AT_END=$2
 }
 
 echo Please enter your user password to install $1
@@ -69,7 +70,11 @@ while ! check_pass; do
 		rm -r "$HOME/.cache/y.run"
 		clear
 		echo "Starting $APP..."
-		setsid "${APP}"
+		if (( $CLOSE_AT_END == 1 )); then
+			setsid "${APP}"
+		else
+			setsid "${APP}" &
+		fi
 		sleep 1
 		exit
 	else
