@@ -53,6 +53,7 @@ ask_pass
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
 		sudo -Sp '' echo -e 'Installing...' <<<${SUDO_ASKPASS}
+		notify-send "Installing $1..."
 		clear
 		
 		echo "Fetching install script for $1..."
