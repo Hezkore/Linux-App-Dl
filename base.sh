@@ -73,11 +73,11 @@ while ! check_pass; do
 		if (( $CLOSE_AT_END == 1 )); then
 			echo "Starting $APP in new instance..."
 			setsid "${APP}" &
+			sleep 1
 		else
 			echo "Starting $APP..."
 			setsid "${APP}"
 		fi
-		sleep 1
 		exit
 	else
 		echo "Wrong Password!"
