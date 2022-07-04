@@ -69,9 +69,9 @@ while ! check_pass; do
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
 		clear
-		notify-send -e "Lauching $1..."
+		notify-send -e "Launching $1..."
 		echo "Starting $APP..."
-		setsid ${APP} &
+		bash -c "setsid ${APP} &"
 		sleep 1
 		exit
 	else
