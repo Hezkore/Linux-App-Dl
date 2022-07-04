@@ -54,7 +54,7 @@ while ! check_pass; do
 		clear
 		echo "Starting $APP..."
 		sleep 1
-		${APP} > /dev/null 2>&1 & disown
+		setsid ${APP} &
 		sleep 2
 		exit
 	else
