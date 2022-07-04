@@ -47,7 +47,7 @@ function check_pass {
 }
 
 function end_with {
-	echo -e "$@" > "$HOME/.cache/y.run"
+	echo -e '${@}' > "$HOME/.cache/y.run"
 }
 
 echo Please enter your user password to install $1
