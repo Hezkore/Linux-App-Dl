@@ -3,4 +3,4 @@
 
 sudo apt install htop -y
 
-end_with "htop" false
+end_with "htop" 0
