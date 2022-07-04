@@ -70,6 +70,7 @@ while ! check_pass; do
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
 		clear
+		echo $CLOSE_AT_END
 		if (( $CLOSE_AT_END == 1 )); then
 			echo "Starting $APP in new instance..."
 			setsid "${APP}" &
