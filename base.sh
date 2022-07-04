@@ -72,9 +72,9 @@ while ! check_pass; do
 		clear
 		echo "Starting $APP..."
 		if (( $CLOSE_AT_END == 1 )); then
-			setsid "${APP}"
-		else
 			setsid "${APP}" &
+		else
+			setsid "${APP}"
 		fi
 		sleep 1
 		exit
