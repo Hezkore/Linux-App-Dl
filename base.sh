@@ -8,6 +8,8 @@ echo "=== Download & Install $1 ==="
 echo "App: $1"
 echo "User: $(whoami)"
 
+CLOSE_TERMINAL=0
+
 # Figure out base distro (do this better!)
 DISTRO='unknown'
 if [ -f "/etc/debian_version" ]; then
@@ -44,10 +46,8 @@ function check_pass {
 	return 1
 }
 
-CLOSE_AT_END=0
 function end_with {
-	echo -e $1 > "$HOME/.cache/y.run"
-	CLOSE_AT_END=$2
+	echo -e "$@" > "$HOME/.cache/y.run"
 }
 
 echo Please enter your user password to install $1
@@ -63,22 +63,16 @@ while ! check_pass; do
 		
 		echo "Installing $1..."
 		source "$HOME/.cache/y.ins" |
-		#source "./${DISTRO}/${1}.sh"
+		#source "./${DISTRO}/${1}.sh" |
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
 		
 		rm -r "$HOME/.cache/y.ins"
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
 		clear
-		echo $CLOSE_AT_END
-		if (( $CLOSE_AT_END == 1 )); then
-			echo "Starting $APP in new instance..."
-			setsid "${APP}" &
-			sleep 1
-		else
-			echo "Starting $APP..."
-			setsid "${APP}"
-		fi
+		echo "Executing $APP..."
+		setsid "${APP}" &
+		sleep 1
 		exit
 	else
 		echo "Wrong Password!"
