@@ -4,4 +4,4 @@
 sudo add-apt-repository ppa:lutris-team/lutris -y
 sudo apt install lutris -y
 
-end_with "lutris"
+end_with "lutris  &"

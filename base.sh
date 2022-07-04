@@ -71,7 +71,7 @@ while ! check_pass; do
 		clear
 		notify-send -e "Launching $1..."
 		echo "Starting $APP..."
-		bash -c "setsid ${APP} &"
+		setsid ${APP}
 		sleep 1
 		exit
 	else
