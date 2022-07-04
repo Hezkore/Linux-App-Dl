@@ -44,6 +44,7 @@ function check_pass {
 	return 1
 }
 
+CLOSE_AT_END=0
 function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 	CLOSE_AT_END=$2
