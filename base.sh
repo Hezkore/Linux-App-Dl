@@ -5,8 +5,24 @@ mkdir -p "$HOME/.cache"
 clear
 
 echo "=== Download & Install $1 ==="
+echo "App: $1"
+echo "User: $(whoami)"
 
-DISTRO='Debian'
+# Figure out base distro (do this better!)
+DISTRO='unknown'
+if [ -f "/etc/debian_version" ]; then
+   DISTRO='debian'
+fi
+
+# Is distro valid?
+if [ $DISTRO = 'unknown' ]; then
+	echo "Not a valid distro"
+	exit
+else
+	echo "Distro: $DISTRO"
+	echo $(uname -a)
+	echo
+fi
 
 function ask_pass {
 	SUDO_ASKPASS=$(zenity --password --title=Authentication)
@@ -32,7 +48,7 @@ function end_with {
 	echo -e $1 > "$HOME/.cache/y.run"
 }
 
-echo Please enter your password to install $1
+echo Please enter your user password to install $1
 ask_pass
 while ! check_pass; do
 	if (( $SUDO_STATUS == 1 )); then
@@ -53,9 +69,8 @@ while ! check_pass; do
 		rm -r "$HOME/.cache/y.run"
 		clear
 		echo "Starting $APP..."
-		sleep 1
 		setsid ${APP} &
-		sleep 2
+		sleep 1
 		exit
 	else
 		echo "Wrong Password!"
