@@ -60,7 +60,7 @@ while ! check_pass; do
 		zenity --progress --width=400 --height=100 --title="Preparing to install ${1}" --text "Downloading..." --auto-close --pulsate
 		
 		echo "Installing $1..."
-		notify-send "Installing $1..."
+		notify-send -e "Installing $1..."
 		source "$HOME/.cache/y.ins" |
 		#source "./${DISTRO}/${1}.sh"
 		zenity --progress --width=400 --height=100 --title="Installing ${1}" --text "Installing..." --auto-close --pulsate
@@ -69,7 +69,7 @@ while ! check_pass; do
 		APP=$(cat "$HOME/.cache/y.run")
 		rm -r "$HOME/.cache/y.run"
 		clear
-		notify-send "Lauching $1..."
+		notify-send -e "Lauching $1..."
 		echo "Starting $APP..."
 		setsid ${APP} &
 		sleep 1
