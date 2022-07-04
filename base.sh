@@ -69,7 +69,7 @@ while ! check_pass; do
 		rm -r "$HOME/.cache/y.run"
 		clear
 		echo "Starting $APP..."
-		setsid ${APP}
+		setsid "${APP}"
 		sleep 1
 		exit
 	else
